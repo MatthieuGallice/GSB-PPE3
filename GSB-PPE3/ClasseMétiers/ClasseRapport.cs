@@ -57,7 +57,26 @@ namespace ClasseMétiers
         #endregion
 
         #region méthodes
+        // méthode qui vérifie si la quantite est valide, uniquement des chiffre
+        public static bool quantiteValide(string quantite)
+        {
+            // variable boolean pour le return 
+            bool resultat = false;
+            // variable qui utilise la fonction Regex des expression régulière qui vérifie que la chaine de caractére posséde seulement des chiffre entre 0 et 9
+            var MyRegex = new Regex("^[0-9]*$");
 
+            // condition qui utilise IsMatch sur la chaine quantite, cette expression permet de vérifie si il existe une correspondance entre la chaine spécifier et le constructeur Regex 
+            if (MyRegex.IsMatch(quantite))
+            {
+                resultat = true;   
+            }
+            // condition si l'expression est fausse
+            else
+            {
+                resultat = false;
+            }
+            return resultat;
+        }
         #endregion
     }
 }

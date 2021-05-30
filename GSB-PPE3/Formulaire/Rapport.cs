@@ -48,7 +48,7 @@ namespace Formulaire
             }
         }
 
-        // fonction qui remplis les combobox
+        // fonction qui remplis les combobox partie rapport
         public void remplirCombobox()
         {
             // initialisation d'une liste puis ajout grâce a la fonction chargerLesVisteur de classePVisiteur
@@ -103,7 +103,41 @@ namespace Formulaire
                 comboBoxMotif.Items.Add(motif);
             }
         }
-        
+
+        // fonction qui remplis les combobox partie med offert
+        private void remplirComboboxMedOffert()
+        {
+            List<ClasseRapport> lesRapp = new List<ClasseRapport>();
+            lesRapp = ClassePRapport.chargerLesRapports();
+
+            comboBoxIdOffreRapport.Items.Clear();
+            comboBoxIdOffreRapport.Items.Add(comboNonChoisi);
+            comboBoxIdOffreRapport.SelectedItem = comboNonChoisi;
+
+            // foreach qui ajoute dans le combobox visiteur 
+            foreach (ClasseRapport rapportOffert in lesRapp)
+            {
+                string numRap = rapportOffert.Id.ToString();
+
+                comboBoxIdOffreRapport.Items.Add(numRap);
+            }
+
+            List<ClasseMedicament> lesMedi = new List<ClasseMedicament>();
+            lesMedi = ClassePMedicament.chargerLesMedicaments();
+
+            comboBoxMedicament.Items.Clear();
+            comboBoxMedicament.Items.Add(comboNonChoisi);
+            comboBoxMedicament.SelectedItem = comboNonChoisi;
+
+            // foreach qui ajoute dans le combobox visiteur 
+            foreach (ClasseMedicament medOffert in lesMedi)
+            {
+                string nomMed = medOffert.NomCommercial;
+
+                comboBoxMedicament.Items.Add(nomMed);
+            }
+        }
+
         // fonction qui cache les groupebox et les button
         private void cacherText()
         {
@@ -124,7 +158,7 @@ namespace Formulaire
             buttonValiderRecherche.Visible = false;
             buttonValiderModif.Visible = false;
         }
-
+        
         // fonction qui clear les textbox et sélectionne la date du jour
         private void nettoyer()
         {
@@ -132,20 +166,54 @@ namespace Formulaire
             textBoxCode.Clear();
             textBoxBilan.Clear();
 
-            // rend le textbox code inaccessible
+            // rend le textbox code et bilan inaccessible
             textBoxCode.Enabled = false;
+            textBoxBilan.Enabled = false;
+
 
             // met la date du jour au dateTimePicker
             dateTimePickerRapport.Value = DateTime.Now;
         }
 
+        // fonction qui nettoye le textbox quantite et sélectionne les combobox
+        private void clearMed()
+        {
+            remplirComboboxMedOffert();
+            txtQuantiteOffre.Clear();
+
+            buttonValiderModifEchantillon.Visible = false;
+
+            comboBoxIdOffreRapport.Enabled = true;
+            comboBoxMedicament.Enabled = true;
+        }
+
+        // fonction qui enleve la case a cocher et met la date a jour sur le date time picker
+        private void dateTimeAJour()
+        {
+            dateTimePickerRapport.ShowCheckBox = false;
+            dateTimePickerRapport.Value = DateTime.Today;
+        }
+
+        // fonction qui ajoute une case a cocher au date time picker
+        private void dateTimeCocher()
+        {
+            dateTimePickerRapport.ShowCheckBox = true;
+        }
+
+
         // fonction au chargement du formulaire
         private void Rapport_Load(object sender, EventArgs e)
         {
+            // partie rapport
             chargerDgv();
             remplirCombobox();
             nettoyer();
             cacherText();
+            dateTimeAJour();
+
+            // partie med offert
+            remplirComboboxMedOffert();
+            clearMed();
         }
 
         // fonction au clique du button ajouter qui affiche les groupbox et le button valider ajout
@@ -154,6 +222,7 @@ namespace Formulaire
             remplirCombobox();
             nettoyer();
             cacherText();
+            dateTimeAJour();
 
             // affiche les groupebox 
             groupBoxCode.Visible = true;
@@ -164,6 +233,9 @@ namespace Formulaire
             
             groupBoxMotif.Visible = true;
             groupBoxBilan.Visible = true;
+
+            // rend accessible le textbox bilan
+            textBoxBilan.Enabled = true;
 
             // affiche le button valider ajout
             buttonValiderAjout.Visible = true;
@@ -239,7 +311,7 @@ namespace Formulaire
                 // variable qui récupére les données dans les cellules du dgv 
                 int idRapport = int.Parse(dgvRapport.CurrentRow.Cells[0].Value.ToString());
 
-                // condition qui active un messageBox et si valider alors suppression du médecin
+                // condition qui active un messageBox et si valider alors suppression du rapport
                 if (MessageBox.Show("êtes vous sur de vouloir supprimer le rapport numéro : " + idRapport + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     // fonction qui supprime le rapport
@@ -252,7 +324,12 @@ namespace Formulaire
                     // appelle de la fonction qui nettoye les textbox et combobox puis les cache 
                     nettoyer();
                     cacherText();
+                    dateTimeAJour();
                 }
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
             }
         }
 
@@ -268,6 +345,7 @@ namespace Formulaire
                     remplirCombobox();
                     nettoyer();
                     cacherText();
+                    dateTimeAJour();
 
                     // affiche les groupebox 
                     groupBoxCode.Visible = true;
@@ -278,6 +356,9 @@ namespace Formulaire
 
                     groupBoxMotif.Visible = true;
                     groupBoxBilan.Visible = true;
+
+                    // rend accessible le textbox bilan
+                    textBoxBilan.Enabled = true;
 
                     // affiche le button valider ajout
                     buttonValiderModif.Visible = true;
@@ -397,6 +478,8 @@ namespace Formulaire
             groupBoxCode.Visible = true;
             groupBoxDate.Visible = true;
 
+            dateTimeCocher();
+
             groupBoxVisiteur.Visible = true;
             groupBoxMedecin.Visible = true;
 
@@ -418,18 +501,17 @@ namespace Formulaire
 
             // variable qui récupére le contenu des combobox et du textbox de recherche  
             string leCode = textBoxCode.Text;
-            DateTime laDate = DateTime.Parse(dateTimePickerRapport.Text);
+            bool laDateActive = dateTimePickerRapport.Checked;
 
             string leVisiteur = comboBoxVisiteur.Text;
             string leMedecin = comboBoxMed.Text;
 
             string leMotif = comboBoxMotif.Text;
-            string leBilan = textBoxBilan.Text;
 
             string leNomVis;
             string lePrenomVis;
 
-            // récupération du nom et du prénom du médecin avec un split qui prend la séparation sur l'espace
+            // récupération du nom et du prénom du visiteur avec un split qui prend la séparation sur l'espace
             if (leVisiteur == comboNonChoisi)
             {
                 leNomVis = "";
@@ -441,6 +523,9 @@ namespace Formulaire
                 leNomVis = leVisi[0];
                 lePrenomVis = leVisi[1];
             }
+
+            // fonction qui récupére l'id du visiteur
+            int idVis = ClassePVisiteur.chargerUnVisiteur(leNomVis, lePrenomVis);
 
             string leNomMed;
             string lePrenomMed;
@@ -457,11 +542,50 @@ namespace Formulaire
                 leNomMed = leMed[0];
                 lePrenomMed = leMed[1];
             }
+            
+            // fonction qui récupére l'id du medecin
+            int idMed = ClassePMedecin.recupererIdMedecin(leNomMed, lePrenomMed);
 
+            // vérifie si la case a cocher est activer si oui alors on récupére la date et on passe la variable laDateActive a true sinon false est on prend la date du jour
+            DateTime laDate;
+            bool dateActive;
+            if (laDateActive == true)
+            {
+                laDate = DateTime.Parse(dateTimePickerRapport.Text);
+                dateActive = true;
+            }
+            else
+            {
+                laDate = DateTime.Parse(DateTime.Today.ToString());
+                dateActive = false;
+            }
 
+            // condition qui vérifie qu'au moins un des élément et sélectionné
+            if (leCode != "" || laDateActive == true || leVisiteur != comboNonChoisi || leMedecin != comboNonChoisi || leMotif != comboNonChoisi)
+            {
+                // initialisation d'une liste avec la fonction rechercherRapport de classePRapport
+                List<ClasseRapport> leRap = ClassePRapport.rechercherRapport(leCode, laDate, dateActive, idMed, idVis, leMotif);
+                // foreach qui remplis le dgv avec la liste leRap
+                foreach (ClasseRapport lesRap in leRap)
+                {
+                    string lid = lesRap.Id.ToString();
+                    string leNomVisiteur = lesRap.LeVisiteur.Nom;
+                    string lePrenomVisiteur = lesRap.LeVisiteur.Prenom;
+                    DateTime DateRap = lesRap.Date;
+                    string MotifRap = lesRap.Motif;
+                    string leBilan = lesRap.Bilan;
+                    string leNomMedecin = lesRap.LeMedecin.Nom;
+                    string lePrenomMedecin = lesRap.LeMedecin.Prenom;
 
-
-
+                    dgvRapport.Rows.Add(lid, leNomVisiteur, lePrenomVisiteur, DateRap, MotifRap, leBilan, leNomMedecin, lePrenomMedecin);
+                }
+            }
+            // condition qui s'active si aucun des groupbox et le textbox ne sont sélectionné 
+            else
+            {
+                chargerDgv();
+                MessageBox.Show("il faut choisir au moins un élément de recherche !");
+            }
         }
 
         // fonction qui nettoie le dgv est cache les groupbox et les button au clique de reinitialiser
@@ -472,6 +596,229 @@ namespace Formulaire
             cacherText();
 
             chargerDgv();
+        }
+        
+        // fonction qui affiche les groupbox et le bouton valider ajout 
+        private void buttonAjouterOffre_Click(object sender, EventArgs e)
+        {
+            // variable récupérent les information
+            string leRapport = comboBoxIdOffreRapport.Text;
+            string leMedicament = comboBoxMedicament.Text;
+            string laQuantite = txtQuantiteOffre.Text;
+            bool laQuantiteValide;
+
+            // vérifie si une quantité est indiquer qu'il s'agisse bien d'un chiffre
+            if (laQuantite != "")
+            {
+                laQuantiteValide = ClasseRapport.quantiteValide(laQuantite);
+            }
+            else
+            {
+                laQuantiteValide = false;
+            }
+            
+            // vérifie que le rapport et le médicament est sélection et que la quantité soit valide
+            if (leRapport != comboNonChoisi && leMedicament != comboNonChoisi && laQuantiteValide == true)
+            {
+                int idMedicament = ClassePMedicament.recupererIdMedicament(leMedicament);
+
+                // ajoute l'échantillon avec la fonction 
+                ClassePEchantillonOffert.AjoutEchantillonOffert(int.Parse(leRapport), idMedicament, int.Parse(laQuantite));
+
+                // appelle de la fonction qui remplis le dgv et qui remplis les combobox
+                remplirComboboxMedOffert();
+                clearMed();
+            }
+            // sinon affiche un messagebox pour indiquer un problème
+            else
+            {
+                MessageBox.Show("attention l'ajout n'est pas valide, l'un des élément n'est pas valide, non sélection d'un rapport ou d'un médicament ou la quantité n'est pas valide (il ne s'agit pas d'un chiffre ou il n'a pas était remplis) !", "advertissement ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // fonction qui remplie les groupebox et le textbox puis le bouton valider modif 
+        private void buttonModifierOffre_Click(object sender, EventArgs e)
+        {
+            // condition qui vérifie qu'il y et un élément dans le dgv
+            if (dgwListeMedicament.RowCount != 1)
+            {
+                // condition qui pour être remplis dois sélectionné une ligne dans le dgv
+                if (dgwListeMedicament.CurrentRow.Selected)
+                {
+                    // appelle des fonction qui clear les groupebox et le textbox
+                    remplirComboboxMedOffert();
+                    clearMed();
+
+                    // affiche le button valider modif
+                    buttonValiderModifEchantillon.Visible = true;
+
+                    // récupération des valeur 
+                    string codeRapport = dgwListeMedicament.CurrentRow.Cells[0].Value.ToString();
+                    string nomMedicament = dgwListeMedicament.CurrentRow.Cells[2].Value.ToString();
+                    string laQuantite = dgwListeMedicament.CurrentRow.Cells[3].Value.ToString();
+
+                    // placement dans les textbox et sélection dans le combobox
+                    comboBoxIdOffreRapport.SelectedItem = codeRapport;
+                    comboBoxMedicament.SelectedItem = nomMedicament;
+                    txtQuantiteOffre.Text = laQuantite;
+
+                    comboBoxIdOffreRapport.Enabled = false;
+                    comboBoxMedicament.Enabled = false;
+
+                }
+                // condition si pas de ligne sélectionner
+                else
+                {
+                    MessageBox.Show("Sélectionner un rapport dans le tableau !");
+                }
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
+            }
+        }
+
+        // fonction qui vérifie que les modificationsoit correct puis réalise la modification 
+        private void buttonValiderModifEchantillon_Click(object sender, EventArgs e)
+        {
+            // variable récupérent les information
+            string leRapport = comboBoxIdOffreRapport.Text;
+            string leMedicament = comboBoxMedicament.Text;
+            string laQuantite = txtQuantiteOffre.Text;
+            bool laQuantiteValide;
+
+            // vérifie que la quantité soit remplie
+            if (laQuantite != "")
+            {
+                // vérifie que la quantité soit valide
+                laQuantiteValide = ClasseRapport.quantiteValide(laQuantite);
+                if (laQuantiteValide == true)
+                {
+                    int idMedicament = ClassePMedicament.recupererIdMedicament(leMedicament);
+
+                    // modifie l'échantillon avec la fonction ModifEchantillonOffert
+                    ClassePEchantillonOffert.ModifEchantillonOffert(int.Parse(leRapport), idMedicament, int.Parse(laQuantite));
+
+                    // appelle de la fonction qui remplis le dgv et qui remplis les combobox
+                    dgwListeMedicament.Rows.Clear();
+                    remplirComboboxMedOffert();
+                    clearMed();
+                }
+                // sinon affiche un messagebox pour indiquer que la quantité n'est pas valide
+                else
+                {
+                    MessageBox.Show("attention la modification n'est pas valide, la quantité n'a pas était remplis !", "advertissement ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            // sinon affiche un messagebox pour indiquer que la quantité n'est pas remplie
+            else
+            {
+                MessageBox.Show("attention la modification n'est pas valide, la quantité n'a pas était remplis !", "advertissement ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // fonction qui affiche un messagebox puis qui supprime le medicament offert
+        private void buttonSupprimerOffre_Click(object sender, EventArgs e)
+        {
+            if (dgwListeMedicament.RowCount != 1)
+            {
+                // variable qui récupére les données dans les cellules du dgv 
+                int idRapport = int.Parse(dgwListeMedicament.CurrentRow.Cells[0].Value.ToString());
+                int idMedicament = int.Parse(dgwListeMedicament.CurrentRow.Cells[1].Value.ToString());
+                string nomMedicament = dgwListeMedicament.CurrentRow.Cells[2].Value.ToString();
+
+                // condition qui active un messageBox et si valider alors suppression de l'échantillon
+                if (MessageBox.Show("êtes vous sur de vouloir supprimer l'échantillon lier au rapport numéro : " + idRapport + " comprenant le médicament intituler : " + nomMedicament + " ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    // fonction qui supprime l'échantillon
+                    ClassePEchantillonOffert.SupprimerEchantillonOffert(idRapport, idMedicament);
+
+                    // appelle de la fonction qui remplis le dgv et qui remplis les combobox
+                    dgwListeMedicament.Rows.Clear();
+                    remplirComboboxMedOffert();
+                    clearMed();
+                } 
+            }
+            else
+            {
+                MessageBox.Show("il n'y pas d'élément dans le tableau");
+            }
+        }
+
+        // fonction qui recherche et affiche dans le datagridview
+        private void buttonRechercherMedRap_Click(object sender, EventArgs e)
+        {
+            string leRapport = comboBoxIdOffreRapport.Text;
+            string leMedicament = comboBoxMedicament.Text;
+            string laQuantite = txtQuantiteOffre.Text;
+
+            bool leRapportValide = false;
+            bool leMedicamentValide = false;
+            bool laQuantiteValide = ClasseRapport.quantiteValide(laQuantite);
+
+            // condition qui vérifie qu'au moins un élément est sélectionné pour la recherche 
+            if (leRapport == comboNonChoisi && leMedicament == comboNonChoisi && laQuantite == "")
+            {
+                // active un messageBox pour indiquer que la recherche n'est pas valide
+                MessageBox.Show("attention la recherche n'est pas valide vous n'avait pas choisi de rapport ou de médicament ou la quantité n'est pas valide !", "advertissement ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+            }
+            // vérifie si la quantité est bien un chiffre
+            else if (laQuantiteValide == false && laQuantite != "")
+            {
+                // active un messageBox pour indiquer que la recherche n'est pas valide a cause de la quantite
+                MessageBox.Show("attention la recherche n'est pas valide, la quantité n'est pas un chiffre !", "advertissement ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                // condition qui active un messageBox et si valider alors recherche
+                if (MessageBox.Show("êtes vous sur de vouloir réaliser la recherche avec les élèments sélectionné ?", "advertissement ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    // condition qui vérifie si un rapport est sélectionner
+                    if (leRapport == comboNonChoisi)
+                    {
+                        leRapportValide = false;
+                    }
+                    else
+                    {
+                        leRapportValide = true;
+                    }
+
+                    // condition qui vérifie si un médicament est sélectionner
+                    if (leMedicament == comboNonChoisi)
+                    {
+                        leMedicamentValide = false;
+                    }
+                    else
+                    {
+                        leMedicamentValide = true;
+                    }
+
+                    // initialisation d'une liste avec la fonction rechercherRapport de classePRapport
+                    List<ClasseEchantillonOffert> lEchant = ClassePEchantillonOffert.rechercherRapportMedicament(leRapport, leRapportValide, leMedicament, leMedicamentValide, laQuantite);
+                    // on vide le dgw pour le remplir 
+                    dgwListeMedicament.Rows.Clear();
+                    // foreach qui remplis le dgv avec la liste leRap
+                    foreach (ClasseEchantillonOffert lesEchant in lEchant)
+                    {
+                        string idRap = lesEchant.IdRapport.ToString();
+                        string idMed = lesEchant.LeMedicament.Id.ToString();
+                        string nomMed = lesEchant.LeMedicament.NomCommercial;
+                        string quantiteOfferte = lesEchant.Quantite.ToString();
+
+                        dgwListeMedicament.Rows.Add(idRap, idMed, nomMed, quantiteOfferte);
+
+                    }
+                }
+            }
+        }
+
+        // fonction qui réinitialise le dgw des medicament offert
+        private void buttonReinitialiserMedRap_Click(object sender, EventArgs e)
+        {
+            dgwListeMedicament.Rows.Clear();
+            remplirComboboxMedOffert();
+            clearMed();
         }
     }
 }

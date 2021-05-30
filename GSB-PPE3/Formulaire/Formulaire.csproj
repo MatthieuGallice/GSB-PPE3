@@ -115,6 +115,12 @@
     <Compile Include="Gerer_Medicament.Designer.cs">
       <DependentUpon>Gerer_Medicament.cs</DependentUpon>
     </Compile>
+    <Compile Include="Liste_Medicament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liste_Medicament.Designer.cs">
+      <DependentUpon>Liste_Medicament.cs</DependentUpon>
+    </Compile>
     <Compile Include="Medecin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     <EmbeddedResource Include="Gerer_Medicament.resx">
       <DependentUpon>Gerer_Medicament.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Liste_Medicament.resx">
+      <DependentUpon>Liste_Medicament.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Medecin.resx">
       <DependentUpon>Medecin.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +175,7 @@
     <EmbeddedResource Include="Visiteur.resx">
       <DependentUpon>Visiteur.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

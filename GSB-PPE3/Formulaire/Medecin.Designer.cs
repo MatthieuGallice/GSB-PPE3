@@ -103,7 +103,7 @@
             this.dgwMedecin.Location = new System.Drawing.Point(171, 56);
             this.dgwMedecin.Name = "dgwMedecin";
             this.dgwMedecin.Size = new System.Drawing.Size(1104, 208);
-            this.dgwMedecin.TabIndex = 1;
+            this.dgwMedecin.TabIndex = 100;
             // 
             // id
             // 
@@ -163,7 +163,7 @@
             this.dgwDernierRapport.Name = "dgwDernierRapport";
             this.dgwDernierRapport.ReadOnly = true;
             this.dgwDernierRapport.Size = new System.Drawing.Size(887, 158);
-            this.dgwDernierRapport.TabIndex = 2;
+            this.dgwDernierRapport.TabIndex = 101;
             // 
             // idRap
             // 
@@ -219,7 +219,7 @@
             this.buttonModifierMedecin.Location = new System.Drawing.Point(427, 485);
             this.buttonModifierMedecin.Name = "buttonModifierMedecin";
             this.buttonModifierMedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonModifierMedecin.TabIndex = 3;
+            this.buttonModifierMedecin.TabIndex = 14;
             this.buttonModifierMedecin.Text = "Modifier Medecin";
             this.buttonModifierMedecin.UseVisualStyleBackColor = true;
             this.buttonModifierMedecin.Click += new System.EventHandler(this.buttonModifierMedecin_Click);
@@ -229,7 +229,7 @@
             this.buttonSupprimerMedecin.Location = new System.Drawing.Point(31, 214);
             this.buttonSupprimerMedecin.Name = "buttonSupprimerMedecin";
             this.buttonSupprimerMedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonSupprimerMedecin.TabIndex = 4;
+            this.buttonSupprimerMedecin.TabIndex = 3;
             this.buttonSupprimerMedecin.Text = "Supprimer Medecin";
             this.buttonSupprimerMedecin.UseVisualStyleBackColor = true;
             this.buttonSupprimerMedecin.Click += new System.EventHandler(this.buttonSupprimerMedecin_Click);
@@ -239,7 +239,7 @@
             this.buttonValiderModif.Location = new System.Drawing.Point(282, 485);
             this.buttonValiderModif.Name = "buttonValiderModif";
             this.buttonValiderModif.Size = new System.Drawing.Size(112, 32);
-            this.buttonValiderModif.TabIndex = 5;
+            this.buttonValiderModif.TabIndex = 13;
             this.buttonValiderModif.Text = "Valider Modifications";
             this.buttonValiderModif.UseVisualStyleBackColor = true;
             this.buttonValiderModif.Visible = false;
@@ -251,7 +251,7 @@
             this.comboBoxListeMedecin.Location = new System.Drawing.Point(37, 45);
             this.comboBoxListeMedecin.Name = "comboBoxListeMedecin";
             this.comboBoxListeMedecin.Size = new System.Drawing.Size(276, 21);
-            this.comboBoxListeMedecin.TabIndex = 7;
+            this.comboBoxListeMedecin.TabIndex = 20;
             this.comboBoxListeMedecin.TextChanged += new System.EventHandler(this.comboBoxListeMedecin_TextChanged);
             // 
             // comboBoxSpecialite
@@ -260,28 +260,28 @@
             this.comboBoxSpecialite.Location = new System.Drawing.Point(45, 19);
             this.comboBoxSpecialite.Name = "comboBoxSpecialite";
             this.comboBoxSpecialite.Size = new System.Drawing.Size(288, 21);
-            this.comboBoxSpecialite.TabIndex = 8;
+            this.comboBoxSpecialite.TabIndex = 14;
             // 
             // txtNomMedecin
             // 
             this.txtNomMedecin.Location = new System.Drawing.Point(51, 23);
             this.txtNomMedecin.Name = "txtNomMedecin";
             this.txtNomMedecin.Size = new System.Drawing.Size(288, 20);
-            this.txtNomMedecin.TabIndex = 9;
+            this.txtNomMedecin.TabIndex = 6;
             // 
             // txtPrenomMedecin
             // 
             this.txtPrenomMedecin.Location = new System.Drawing.Point(45, 23);
             this.txtPrenomMedecin.Name = "txtPrenomMedecin";
             this.txtPrenomMedecin.Size = new System.Drawing.Size(288, 20);
-            this.txtPrenomMedecin.TabIndex = 10;
+            this.txtPrenomMedecin.TabIndex = 7;
             // 
             // txtTelMedecin
             // 
             this.txtTelMedecin.Location = new System.Drawing.Point(45, 23);
             this.txtTelMedecin.Name = "txtTelMedecin";
             this.txtTelMedecin.Size = new System.Drawing.Size(288, 20);
-            this.txtTelMedecin.TabIndex = 11;
+            this.txtTelMedecin.TabIndex = 8;
             // 
             // txtAdresseMedecin
             // 
@@ -303,7 +303,7 @@
             this.groupBoxNomMedecin.Location = new System.Drawing.Point(36, 270);
             this.groupBoxNomMedecin.Name = "groupBoxNomMedecin";
             this.groupBoxNomMedecin.Size = new System.Drawing.Size(381, 56);
-            this.groupBoxNomMedecin.TabIndex = 14;
+            this.groupBoxNomMedecin.TabIndex = 4;
             this.groupBoxNomMedecin.TabStop = false;
             this.groupBoxNomMedecin.Text = "Nom du Médecin";
             // 
@@ -313,7 +313,7 @@
             this.groupBoxPrenomMedecin.Location = new System.Drawing.Point(468, 270);
             this.groupBoxPrenomMedecin.Name = "groupBoxPrenomMedecin";
             this.groupBoxPrenomMedecin.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxPrenomMedecin.TabIndex = 15;
+            this.groupBoxPrenomMedecin.TabIndex = 5;
             this.groupBoxPrenomMedecin.TabStop = false;
             this.groupBoxPrenomMedecin.Text = "Prénom du Médecin";
             // 
@@ -323,7 +323,7 @@
             this.groupBoxTelMedecin.Location = new System.Drawing.Point(891, 270);
             this.groupBoxTelMedecin.Name = "groupBoxTelMedecin";
             this.groupBoxTelMedecin.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxTelMedecin.TabIndex = 15;
+            this.groupBoxTelMedecin.TabIndex = 6;
             this.groupBoxTelMedecin.TabStop = false;
             this.groupBoxTelMedecin.Text = "Telephone du Médecin";
             // 
@@ -333,7 +333,7 @@
             this.groupBoxAdresseMedecin.Location = new System.Drawing.Point(36, 394);
             this.groupBoxAdresseMedecin.Name = "groupBoxAdresseMedecin";
             this.groupBoxAdresseMedecin.Size = new System.Drawing.Size(381, 56);
-            this.groupBoxAdresseMedecin.TabIndex = 15;
+            this.groupBoxAdresseMedecin.TabIndex = 10;
             this.groupBoxAdresseMedecin.TabStop = false;
             this.groupBoxAdresseMedecin.Text = "Adresse du Médecin";
             // 
@@ -343,7 +343,7 @@
             this.groupBoxDepartementMedecin.Location = new System.Drawing.Point(468, 394);
             this.groupBoxDepartementMedecin.Name = "groupBoxDepartementMedecin";
             this.groupBoxDepartementMedecin.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxDepartementMedecin.TabIndex = 16;
+            this.groupBoxDepartementMedecin.TabIndex = 11;
             this.groupBoxDepartementMedecin.TabStop = false;
             this.groupBoxDepartementMedecin.Text = "Département (2 chiffre) du Médecin";
             // 
@@ -353,7 +353,7 @@
             this.groupBoxSpecialiteMedecin.Location = new System.Drawing.Point(891, 394);
             this.groupBoxSpecialiteMedecin.Name = "groupBoxSpecialiteMedecin";
             this.groupBoxSpecialiteMedecin.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxSpecialiteMedecin.TabIndex = 16;
+            this.groupBoxSpecialiteMedecin.TabIndex = 12;
             this.groupBoxSpecialiteMedecin.TabStop = false;
             this.groupBoxSpecialiteMedecin.Text = "Spécialité du Médecin";
             // 
@@ -363,7 +363,7 @@
             this.groupBoxListeMedecin.Location = new System.Drawing.Point(36, 589);
             this.groupBoxListeMedecin.Name = "groupBoxListeMedecin";
             this.groupBoxListeMedecin.Size = new System.Drawing.Size(339, 101);
-            this.groupBoxListeMedecin.TabIndex = 17;
+            this.groupBoxListeMedecin.TabIndex = 18;
             this.groupBoxListeMedecin.TabStop = false;
             this.groupBoxListeMedecin.Text = "Liste des rapports sur un Médecin";
             // 
@@ -372,7 +372,7 @@
             this.txtId.Location = new System.Drawing.Point(36, 456);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 18;
+            this.txtId.TabIndex = 0;
             this.txtId.Visible = false;
             // 
             // buttonRechercherMedecin
@@ -380,7 +380,7 @@
             this.buttonRechercherMedecin.Location = new System.Drawing.Point(31, 93);
             this.buttonRechercherMedecin.Name = "buttonRechercherMedecin";
             this.buttonRechercherMedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonRechercherMedecin.TabIndex = 19;
+            this.buttonRechercherMedecin.TabIndex = 1;
             this.buttonRechercherMedecin.Text = "Rechercher";
             this.buttonRechercherMedecin.UseVisualStyleBackColor = true;
             this.buttonRechercherMedecin.Click += new System.EventHandler(this.buttonRechercherMedecin_Click);
@@ -390,7 +390,7 @@
             this.buttonReinitialisermedecin.Location = new System.Drawing.Point(31, 150);
             this.buttonReinitialisermedecin.Name = "buttonReinitialisermedecin";
             this.buttonReinitialisermedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonReinitialisermedecin.TabIndex = 20;
+            this.buttonReinitialisermedecin.TabIndex = 2;
             this.buttonReinitialisermedecin.Text = "Réinitialiser";
             this.buttonReinitialisermedecin.UseVisualStyleBackColor = true;
             this.buttonReinitialisermedecin.Click += new System.EventHandler(this.buttonReinitialisermedecin_Click);
@@ -401,7 +401,7 @@
             this.groupBoxRechercherNom.Location = new System.Drawing.Point(36, 332);
             this.groupBoxRechercherNom.Name = "groupBoxRechercherNom";
             this.groupBoxRechercherNom.Size = new System.Drawing.Size(381, 56);
-            this.groupBoxRechercherNom.TabIndex = 21;
+            this.groupBoxRechercherNom.TabIndex = 7;
             this.groupBoxRechercherNom.TabStop = false;
             this.groupBoxRechercherNom.Text = "Nom et Prenom du Medecin :";
             // 
@@ -411,7 +411,7 @@
             this.comboBoxRechercherNom.Location = new System.Drawing.Point(51, 19);
             this.comboBoxRechercherNom.Name = "comboBoxRechercherNom";
             this.comboBoxRechercherNom.Size = new System.Drawing.Size(288, 21);
-            this.comboBoxRechercherNom.TabIndex = 0;
+            this.comboBoxRechercherNom.TabIndex = 9;
             // 
             // groupBoxRechercherSpe
             // 
@@ -419,7 +419,7 @@
             this.groupBoxRechercherSpe.Location = new System.Drawing.Point(468, 332);
             this.groupBoxRechercherSpe.Name = "groupBoxRechercherSpe";
             this.groupBoxRechercherSpe.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxRechercherSpe.TabIndex = 22;
+            this.groupBoxRechercherSpe.TabIndex = 8;
             this.groupBoxRechercherSpe.TabStop = false;
             this.groupBoxRechercherSpe.Text = "La Spécialité";
             // 
@@ -429,7 +429,7 @@
             this.comboBoxRechercherSpe.Location = new System.Drawing.Point(45, 19);
             this.comboBoxRechercherSpe.Name = "comboBoxRechercherSpe";
             this.comboBoxRechercherSpe.Size = new System.Drawing.Size(288, 21);
-            this.comboBoxRechercherSpe.TabIndex = 0;
+            this.comboBoxRechercherSpe.TabIndex = 10;
             // 
             // groupBoxRechercherDepartement
             // 
@@ -437,7 +437,7 @@
             this.groupBoxRechercherDepartement.Location = new System.Drawing.Point(891, 332);
             this.groupBoxRechercherDepartement.Name = "groupBoxRechercherDepartement";
             this.groupBoxRechercherDepartement.Size = new System.Drawing.Size(384, 56);
-            this.groupBoxRechercherDepartement.TabIndex = 23;
+            this.groupBoxRechercherDepartement.TabIndex = 9;
             this.groupBoxRechercherDepartement.TabStop = false;
             this.groupBoxRechercherDepartement.Text = "le Département (2 chiffre) :";
             // 
@@ -446,14 +446,14 @@
             this.textBoxRechercherDepartement.Location = new System.Drawing.Point(45, 19);
             this.textBoxRechercherDepartement.Name = "textBoxRechercherDepartement";
             this.textBoxRechercherDepartement.Size = new System.Drawing.Size(288, 20);
-            this.textBoxRechercherDepartement.TabIndex = 0;
+            this.textBoxRechercherDepartement.TabIndex = 11;
             // 
             // buttonAjouterMedecin
             // 
             this.buttonAjouterMedecin.Location = new System.Drawing.Point(800, 485);
             this.buttonAjouterMedecin.Name = "buttonAjouterMedecin";
             this.buttonAjouterMedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonAjouterMedecin.TabIndex = 24;
+            this.buttonAjouterMedecin.TabIndex = 16;
             this.buttonAjouterMedecin.Text = "Ajouter Medecin";
             this.buttonAjouterMedecin.UseVisualStyleBackColor = true;
             this.buttonAjouterMedecin.Click += new System.EventHandler(this.buttonAjouterMedecin_Click);
@@ -463,7 +463,7 @@
             this.buttonValiderAjouterMedecin.Location = new System.Drawing.Point(949, 485);
             this.buttonValiderAjouterMedecin.Name = "buttonValiderAjouterMedecin";
             this.buttonValiderAjouterMedecin.Size = new System.Drawing.Size(112, 32);
-            this.buttonValiderAjouterMedecin.TabIndex = 25;
+            this.buttonValiderAjouterMedecin.TabIndex = 17;
             this.buttonValiderAjouterMedecin.Text = "Valider Ajout";
             this.buttonValiderAjouterMedecin.UseVisualStyleBackColor = true;
             this.buttonValiderAjouterMedecin.Visible = false;
@@ -474,7 +474,7 @@
             this.buttonValiderRecherche.Location = new System.Drawing.Point(615, 485);
             this.buttonValiderRecherche.Name = "buttonValiderRecherche";
             this.buttonValiderRecherche.Size = new System.Drawing.Size(112, 32);
-            this.buttonValiderRecherche.TabIndex = 26;
+            this.buttonValiderRecherche.TabIndex = 15;
             this.buttonValiderRecherche.Text = "Valider Recherche";
             this.buttonValiderRecherche.UseVisualStyleBackColor = true;
             this.buttonValiderRecherche.Visible = false;
@@ -487,7 +487,7 @@
             this.labelTitreDgv2.Location = new System.Drawing.Point(45, 542);
             this.labelTitreDgv2.Name = "labelTitreDgv2";
             this.labelTitreDgv2.Size = new System.Drawing.Size(272, 13);
-            this.labelTitreDgv2.TabIndex = 27;
+            this.labelTitreDgv2.TabIndex = 100;
             this.labelTitreDgv2.Text = "Tableau des Rapport en fonction du Médecin :";
             // 
             // labelTitreDgv1
@@ -497,7 +497,7 @@
             this.labelTitreDgv1.Location = new System.Drawing.Point(28, 56);
             this.labelTitreDgv1.Name = "labelTitreDgv1";
             this.labelTitreDgv1.Size = new System.Drawing.Size(137, 13);
-            this.labelTitreDgv1.TabIndex = 28;
+            this.labelTitreDgv1.TabIndex = 100;
             this.labelTitreDgv1.Text = "Tableau des Médecin :";
             // 
             // Medecin
@@ -530,7 +530,7 @@
             this.Controls.Add(this.dgwMedecin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Medecin";
-            this.Text = "Medecins";
+            this.Text = "Gestion des Medecins";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Medecin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwMedecin)).EndInit();

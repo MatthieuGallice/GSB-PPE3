@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions; // pour utilisé les expression régulière
 using System.Threading.Tasks;
+using System.Text.RegularExpressions; // pour utilisé les expression régulière
 
 namespace ClasseMétiers
 {
@@ -81,7 +81,7 @@ namespace ClasseMétiers
                     // variable qui récupére les deux premier chiffre du numéro de téléphone
                     string telDébut = tel.Substring(0, 2); 
                     // condition qui vérifie les deux premier chiffre du numéro de téléphone
-                    if(telDébut == "01" || telDébut == "02" || telDébut == "03" || telDébut == "04" || telDébut == "05" || telDébut == "06" || telDébut == "07" || telDébut == "09")
+                    if(telDébut == "01" || telDébut == "02" || telDébut == "03" || telDébut == "04" || telDébut == "05" || telDébut == "06" || telDébut == "07" || telDébut == "08" || telDébut == "09")
                     {
                         resultat = true;
                     }
